@@ -1,0 +1,36 @@
+name: Build NITI emergency manuals
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/*.md'
+      - 'tools/build_documents.py'
+      - '.github/workflows/build-manuals.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install document tooling and Thai fonts
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y pandoc libreoffice-writer fonts-noto-core fonts-thai-tlwg
+          python -m pip install --break-system-packages python-docx
+      - name: Build Word and PDF
+        run: python tools/build_documents.py
+      - name: Commit generated documents
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add published/NITI_Emergency_Plan_TH.docx published/NITI_Emergency_Plan_TH.pdf
+          git add published/NITI_Guard_Quick_Card_TH.docx published/NITI_Guard_Quick_Card_TH.pdf
+          if ! git diff --cached --quiet; then
+            git commit -m "docs: publish generated Thai emergency manuals [skip ci]"
+            git push
+          fi
