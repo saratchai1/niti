@@ -82,19 +82,19 @@ def enhance_docx(path, is_quick=False):
     doc = Document(path)
     sec = doc.sections[0]
     sec.page_width, sec.page_height = Cm(21), Cm(29.7)
-    sec.top_margin = Cm(1.8 if is_quick else 2.0)
-    sec.bottom_margin = Cm(1.55)
+    sec.top_margin = Cm(1.18 if is_quick else 2.0)
+    sec.bottom_margin = Cm(1.15 if is_quick else 1.55)
     sec.left_margin = Cm(1.65)
     sec.right_margin = Cm(1.65)
     sec.header_distance = Cm(0.8)
     sec.footer_distance = Cm(0.7)
 
     normal = doc.styles["Normal"]
-    style_font(normal, 9.3 if is_quick else 10.0, RGBColor(34, 45, 54), space_after=4)
+    style_font(normal, 8.2 if is_quick else 10.0, RGBColor(34, 45, 54), space_after=(2.5 if is_quick else 4))
     for name, size, color, bold, before, after in (
-        ("Title", 21, NAVY, True, 8, 12),
-        ("Heading 1", 15, NAVY, True, 13, 5),
-        ("Heading 2", 11.5, ORANGE, True, 10, 3),
+        ("Title", (17 if is_quick else 21), NAVY, True, 6, 8),
+        ("Heading 1", (12.5 if is_quick else 15), NAVY, True, 8, 3),
+        ("Heading 2", (10 if is_quick else 11.5), ORANGE, True, 6, 2),
         ("Heading 3", 10.3, NAVY, True, 7, 2),
         ("Block Text", 9.7, GRAY, False, 2, 5),
     ):
@@ -126,7 +126,7 @@ def enhance_docx(path, is_quick=False):
                     p.paragraph_format.space_after = Pt(1.5)
                     p.paragraph_format.line_spacing = 1.12
                     for r in p.runs:
-                        set_font(r,size=7.9 if is_quick else 8.3,bold=(ridx == 0),color=(RGBColor(255,255,255) if ridx == 0 else RGBColor(40,51,62)))
+                        set_font(r,size=7.1 if is_quick else 8.3,bold=(ridx == 0),color=(RGBColor(255,255,255) if ridx == 0 else RGBColor(40,51,62)))
         # Avoid giant gaps before narrow tables.
         try:
             table.style = "Table Grid"
