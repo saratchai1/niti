@@ -6,6 +6,14 @@
 - [ร่างแผนปฏิบัติการฉุกเฉิน (ฉบับภาษาไทย)](docs/EMERGENCY_PLAN_TH.md)
 - [บัตรสั่งการ รปภ. ติดป้อมยาม](docs/QUICK_CARD_TH.md)
 
+## ดาวน์โหลดเอกสาร Word / PDF
+- [คู่มือแผนฉุกเฉิน (Word)](published/NITI_Emergency_Plan_TH.docx)
+- [คู่มือแผนฉุกเฉิน (PDF)](published/NITI_Emergency_Plan_TH.pdf)
+- [บัตรสั่งการ รปภ. A4 (Word)](published/NITI_Guard_Quick_Card_TH.docx)
+- [บัตรสั่งการ รปภ. A4 (PDF)](published/NITI_Guard_Quick_Card_TH.pdf)
+
+แก้ไข Markdown ในโฟลเดอร์ docs/ แล้วระบบ GitHub Actions จะสร้าง DOCX/PDF ชุดใหม่ในโฟลเดอร์ published/ อัตโนมัติ หรือใช้คำสั่ง python tools/build_documents.py ในสภาพแวดล้อมที่ติดตั้ง pandoc, libreoffice, python-docx และฟอนต์ภาษาไทยแล้ว
+
 ## สถานะ
 **เอกสารตัวอย่างเพื่อใช้ปรับแก้ ไม่ใช่แผนที่อนุมัติใช้แล้ว** ก่อนประกาศใช้ต้องสำรวจผังหมู่บ้านจริง กำหนดบ้านในโซน A/B/C จุดรวมพล ทางเข้ารถดับเพลิง ผู้รับผิดชอบ กำลัง รปภ. และโทรศัพท์ประจำพื้นที่ รวมถึงฝึกซ้อมร่วมกับสถานีดับเพลิงท้องถิ่น
 
