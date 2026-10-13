@@ -12,6 +12,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: niti-document-publisher-main
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -32,5 +36,6 @@ jobs:
           git add published/NITI_Guard_Quick_Card_TH.docx published/NITI_Guard_Quick_Card_TH.pdf
           if ! git diff --cached --quiet; then
             git commit -m "docs: publish generated Thai emergency manuals [skip ci]"
-            git push
+            git pull --rebase origin main
+            git push origin HEAD:main
           fi
